@@ -25,7 +25,7 @@ namespace LoanApplicationAPI.DBModels
         public int CurrentStatusId { get; set; }
 
         [Column("previous_status_id")]
-        [JsonPropertyName("id")]
+        [JsonPropertyName("previousStatusId")]
         public int PreviousStatusId { get; set; }
 
         [Column("loan_amount")]

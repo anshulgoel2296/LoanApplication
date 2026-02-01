@@ -3,6 +3,7 @@ using LoanApplicationAPI.Context;
 using LoanApplicationAPI.Contract;
 using LoanApplicationAPI.Services;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DBContext>(options =>
@@ -14,9 +15,10 @@ builder.Services.AddAutoMapper(typeof(LoanApplicationAutoMapper));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ILoanTypeService, LoanTypeService>();
 builder.Services.AddScoped<IApplicationStatusService, ApplicationStatusService>();
+builder.Services.AddScoped<ILoanApplicationService, LoanApplicationService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();

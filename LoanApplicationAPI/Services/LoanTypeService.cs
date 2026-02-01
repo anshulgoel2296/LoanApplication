@@ -38,14 +38,14 @@ namespace LoanApplicationAPI.Services
             return LoanType;
         }
 
-        // READ (by id)
+        
         public async Task<LoanType?> GetByIdAsync(int id)
         {
             return await _dbContext.LoanTypeList
                 .FirstOrDefaultAsync(u => u.LoanId == id);
         }
 
-        // READ (all)
+        
         public async Task<List<LoanType>> GetAllAsync()
         {
             return await _dbContext.LoanTypeList
@@ -67,7 +67,7 @@ namespace LoanApplicationAPI.Services
             return LoanType;
         }
 
-        // DELETE
+        
         public async Task<bool> DeleteAsync(int id)
         {
             var LoanType = await _dbContext.LoanTypeList

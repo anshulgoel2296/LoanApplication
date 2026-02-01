@@ -41,14 +41,14 @@ namespace LoanApplicationAPI.Services
             return user;
         }
 
-        // READ (by id)
+        
         public async Task<User?> GetByIdAsync(int id)
         {
             return await _dbContext.UsersList
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        // READ (all)
+        
         public async Task<List<User>> GetAllAsync()
         {
             return await _dbContext.UsersList
@@ -70,7 +70,7 @@ namespace LoanApplicationAPI.Services
             return user;
         }
 
-        // DELETE
+        
         public async Task<bool> DeleteAsync(int id)
         {
             var user = await _dbContext.UsersList

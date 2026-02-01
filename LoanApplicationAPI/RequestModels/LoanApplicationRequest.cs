@@ -13,7 +13,7 @@ namespace LoanApplicationAPI.RequestModels
         [JsonPropertyName("currentStatusId")]
         public int CurrentStatusId { get; set; }
 
-        [JsonPropertyName("id")]
+        [JsonPropertyName("previousStatusId")]
         public int PreviousStatusId { get; set; }
 
         [JsonPropertyName("amount")]

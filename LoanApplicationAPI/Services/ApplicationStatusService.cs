@@ -38,14 +38,14 @@ namespace LoanApplicationAPI.Services
             return ApplicationStatus;
         }
 
-        // READ (by id)
+        
         public async Task<ApplicationStatus?> GetByIdAsync(int id)
         {
             return await _dbContext.ApplicationStatusList
                 .FirstOrDefaultAsync(u => u.StatusId == id);
         }
 
-        // READ (all)
+        
         public async Task<List<ApplicationStatus>> GetAllAsync()
         {
             return await _dbContext.ApplicationStatusList
@@ -67,7 +67,7 @@ namespace LoanApplicationAPI.Services
             return ApplicationStatus;
         }
 
-        // DELETE
+        
         public async Task<bool> DeleteAsync(int id)
         {
             var ApplicationStatus = await _dbContext.ApplicationStatusList

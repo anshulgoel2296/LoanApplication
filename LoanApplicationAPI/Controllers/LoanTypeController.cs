@@ -12,17 +12,17 @@ namespace LoanApplicationAPI.Controllers
     [ApiController]
     public class LoanTypeController : ControllerBase
     {
-        private readonly ILoanTypeService _userService;
+        private readonly ILoanTypeService _loanTypeService;
 
-        public LoanTypeController(ILoanTypeService userService)
+        public LoanTypeController(ILoanTypeService loanTypeService)
         {
-            _userService = userService;
+            _loanTypeService = loanTypeService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var user = await _userService.GetAllAsync();
+            var user = await _loanTypeService.GetAllAsync();
 
             if (user == null || !user.Any())
                 return NotFound(LoanTypeConstants.ERR_LOAN_TYPE_NOT_FOUND);
@@ -33,7 +33,7 @@ namespace LoanApplicationAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _loanTypeService.GetByIdAsync(id);
 
             if (user == null)
                 return NotFound(LoanTypeConstants.ERR_LOAN_TYPE_NOT_FOUND);
@@ -48,7 +48,7 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var createdLoanType = await _userService.CreateAsync(request);
+            var createdLoanType = await _loanTypeService.CreateAsync(request);
 
             return CreatedAtAction(nameof(Get), new { id = createdLoanType.LoanId }, createdLoanType);
         }
@@ -60,7 +60,7 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var updatedLoanType = await _userService.PatchAsync(id, request);
+            var updatedLoanType = await _loanTypeService.PatchAsync(id, request);
 
             return CreatedAtAction(nameof(Get), new { id = updatedLoanType.LoanId }, updatedLoanType);
         }
@@ -72,7 +72,7 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var isLoanTypeDeleted = await _userService.DeleteAsync(id);
+            var isLoanTypeDeleted = await _loanTypeService.DeleteAsync(id);
 
             return Ok(isLoanTypeDeleted);
         }

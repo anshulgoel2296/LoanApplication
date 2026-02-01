@@ -12,17 +12,17 @@ namespace LoanApplicationAPI.Controllers
     [ApiController]
     public class ApplicationStatusController : ControllerBase
     {
-        private readonly IApplicationStatusService _userService;
+        private readonly IApplicationStatusService _applicationStatusService;
 
-        public ApplicationStatusController(IApplicationStatusService userService)
+        public ApplicationStatusController(IApplicationStatusService applicationStatusService)
         {
-            _userService = userService;
+            _applicationStatusService = applicationStatusService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var user = await _userService.GetAllAsync();
+            var user = await _applicationStatusService.GetAllAsync();
 
             if (user == null || !user.Any())
                 return NotFound(ApplicationStatusConstants.ERR_APPLICATION_STATUS_NOT_FOUND);
@@ -33,7 +33,7 @@ namespace LoanApplicationAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _applicationStatusService.GetByIdAsync(id);
 
             if (user == null)
                 return NotFound(ApplicationStatusConstants.ERR_APPLICATION_STATUS_NOT_FOUND);
@@ -48,7 +48,7 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var createdApplicationStatus = await _userService.CreateAsync(request);
+            var createdApplicationStatus = await _applicationStatusService.CreateAsync(request);
 
             return CreatedAtAction(nameof(Get), new { id = createdApplicationStatus.StatusId }, createdApplicationStatus);
         }
@@ -60,7 +60,7 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var updatedApplicationStatus = await _userService.PatchAsync(id, request);
+            var updatedApplicationStatus = await _applicationStatusService.PatchAsync(id, request);
 
             return CreatedAtAction(nameof(Get), new { id = updatedApplicationStatus.StatusId }, updatedApplicationStatus);
         }
@@ -72,7 +72,7 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var isApplicationStatusDeleted = await _userService.DeleteAsync(id);
+            var isApplicationStatusDeleted = await _applicationStatusService.DeleteAsync(id);
 
             return Ok(isApplicationStatusDeleted);
         }
