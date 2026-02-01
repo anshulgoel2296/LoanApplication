@@ -10,11 +10,11 @@ namespace LoanApplicationAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class LoanTypeController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ILoanTypeService _userService;
 
-        public UserController(IUserService userService)
+        public LoanTypeController(ILoanTypeService userService)
         {
             _userService = userService;
         }
@@ -25,7 +25,7 @@ namespace LoanApplicationAPI.Controllers
             var user = await _userService.GetAllAsync();
 
             if (user == null || !user.Any())
-                return NotFound(UserConstants.ERR_USER_NOT_FOUND);
+                return NotFound(LoanTypeConstants.ERR_LOAN_TYPE_NOT_FOUND);
 
             return Ok(user);
         }
@@ -36,33 +36,33 @@ namespace LoanApplicationAPI.Controllers
             var user = await _userService.GetByIdAsync(id);
 
             if (user == null)
-                return NotFound(UserConstants.ERR_USER_NOT_FOUND);
+                return NotFound(LoanTypeConstants.ERR_LOAN_TYPE_NOT_FOUND);
 
             return Ok(user);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] UserRequest request)
+        public async Task<IActionResult> Post([FromBody] LoanTypeRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var createdUser = await _userService.CreateAsync(request);
+            var createdLoanType = await _userService.CreateAsync(request);
 
-            return CreatedAtAction(nameof(Get), new { id = createdUser.Id }, createdUser);
+            return CreatedAtAction(nameof(Get), new { id = createdLoanType.LoanId }, createdLoanType);
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, [FromBody] UserRequest request)
+        public async Task<IActionResult> Patch(int id, [FromBody] LoanTypeRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var updatedUser = await _userService.PatchAsync(id, request);
+            var updatedLoanType = await _userService.PatchAsync(id, request);
 
-            return CreatedAtAction(nameof(Get), new { id = updatedUser.Id }, updatedUser);
+            return CreatedAtAction(nameof(Get), new { id = updatedLoanType.LoanId }, updatedLoanType);
         }
 
         [HttpDelete("{id}")]
@@ -72,9 +72,9 @@ namespace LoanApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var isUserDeleted = await _userService.DeleteAsync(id);
+            var isLoanTypeDeleted = await _userService.DeleteAsync(id);
 
-            return Ok(isUserDeleted);
+            return Ok(isLoanTypeDeleted);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LoanApplicationAPI.DBModels
 {
-    [Table("application_status")]
+    [Table("application_status", Schema = "dbo")]
     public class ApplicationStatus
     {
         [Key]

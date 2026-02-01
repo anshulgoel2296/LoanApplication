@@ -77,7 +77,7 @@ namespace LoanApplicationAPI.Services
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
-                throw new UserNotFoundException(UserConstants.ERR_NO_USER_EXISTS);
+                throw new UserNotFoundException(UserConstants.ERR_USER_NOT_FOUND);
 
             _dbContext.UsersList.Remove(user);
             await _dbContext.SaveChangesAsync();

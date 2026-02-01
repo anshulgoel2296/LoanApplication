@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LoanApplicationAPI.DBModels
 {
-    [Table("loan_types")]
+    [Table("loan_types", Schema = "dbo")]
     public class LoanType
     {
         [Key]

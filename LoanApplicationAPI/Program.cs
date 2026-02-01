@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(LoanApplicationAutoMapper));
 // Add services to the container.
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ILoanTypeService, LoanTypeService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
