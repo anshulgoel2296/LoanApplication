@@ -9,8 +9,8 @@ namespace LoanApplicationAPI.AutoMapper
         public LoanApplicationAutoMapper()
         {
             CreateMap<UserRequest, User>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.CreatedDateTime, opt => opt.MapFrom(_ => DateTime.UtcNow));
+                .ForAllMembers(opts =>
+                opts.Condition((src, dest, srcMember) => srcMember != null));
 
             CreateMap<User, UserRequest>();
 

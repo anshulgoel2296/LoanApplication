@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace LoanApplicationAPI.DBModels
 {
-    [Table("users")]
+    [Table("users", Schema = "dbo")]
     public class User
     {
+        [Key]
         [Column("id")]
         [JsonPropertyName("id")]
         public int Id { get; set; }

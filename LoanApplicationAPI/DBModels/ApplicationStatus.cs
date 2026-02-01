@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace LoanApplicationAPI.DBModels
@@ -6,6 +7,7 @@ namespace LoanApplicationAPI.DBModels
     [Table("application_status")]
     public class ApplicationStatus
     {
+        [Key]
         [Column("status_id")]
         [JsonPropertyName("statusId")]
         public int StatusId { get; set; }

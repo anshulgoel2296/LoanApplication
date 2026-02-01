@@ -15,17 +15,13 @@ namespace LoanApplicationAPI.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
-                .HasIndex(u => u.Email)
-                .IsUnique();
+                .HasKey(u => u.Id);
             modelBuilder.Entity<LoanType>()
-                .HasIndex(u => u.LoanId)
-                .IsUnique();
+                .HasKey(u => u.LoanId);
             modelBuilder.Entity<LoanApplication>()
-                .HasIndex(u => u.Id)
-                .IsUnique();
+                .HasKey(u => u.Id);
             modelBuilder.Entity<ApplicationStatus>()
-                .HasIndex(u => u.StatusId)
-                .IsUnique();
+                .HasKey(u => u.StatusId);
         }
 
         public DbSet<User> UsersList => Set<User>();
