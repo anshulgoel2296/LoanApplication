@@ -46,3 +46,10 @@ Example `POST /api/users` body:  { "firstName": "Jane", "lastName": "Doe", "emai
   - Confirm the `DbContext` mappings and table names match the database schema (check `OnModelCreating` or entity attributes).
   - Verify the `ConnectionStrings` used at runtime are correct (development vs production config).
 
+## Future Implementation
+- Dedicated status transition rules table
+- Full status change audit table
+- Soft-delete or re-application logic
+- Role-based access control
+- Authentication and Authorisation
+- Multi-currency support
